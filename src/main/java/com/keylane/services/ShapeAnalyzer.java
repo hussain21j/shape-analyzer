@@ -1,4 +1,4 @@
-package com.keylane.service;
+package com.keylane.services;
 
 import com.keylane.constants.AppConstants;
 import com.keylane.dto.Shape;
@@ -24,7 +24,7 @@ public class ShapeAnalyzer {
     }
 
     /**
-     * retuns the shape type and invoke the save of a shape
+     * returns the shape type and invoke the save of a shape
      */
     public String analyze(Shape shape) {
         this.shape = shape;
@@ -43,7 +43,6 @@ public class ShapeAnalyzer {
         return service.findUniqueShapes();
     }
 
-    //todo: quite a effort has been made to make it TDD to remove from the constructor
     public ShapeServiceFactory getServiceFactory() {
         return Objects.isNull(serviceFactory) ? (new ShapeServiceFactory(context)) : serviceFactory;
     }

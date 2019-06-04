@@ -1,8 +1,8 @@
 package com.keylane.dto;
 
-import com.keylane.exception.InvalidTriangleException;
-import com.keylane.exception.ShapeValidationException;
-import com.keylane.service.TriangleService;
+import com.keylane.exceptions.InvalidTriangleException;
+import com.keylane.exceptions.ShapeValidationException;
+import com.keylane.services.TriangleBySideService;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -17,9 +17,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
-import static com.keylane.constants.AppConstants.Geometry.EQUILATERAL;
-import static com.keylane.constants.AppConstants.Geometry.ISOSCELES;
-import static com.keylane.constants.AppConstants.Geometry.SCALENE;
+import static com.keylane.constants.AppConstants.TriangleTypes.*;
+
 
 @Getter
 @Setter
@@ -36,7 +35,7 @@ public class TriangleBySide implements Shape {
 
     private String type;
 
-    private TriangleService triangleService;
+    private TriangleBySideService triangleService;
 
     public TriangleBySide(double firstSide, double secondSide, double thirdSide) {
         this.firstSide = firstSide;
@@ -72,10 +71,6 @@ public class TriangleBySide implements Shape {
             shapeType = SCALENE.getType();
         this.type = shapeType;
 
-        //saving the triangle
-        //TriangleEntity entity =  triangleService.save(this);
-        //log.info("Triangle is saved with id :"+entity.getId());
-
         return shapeType;
     }
 
@@ -109,7 +104,6 @@ public class TriangleBySide implements Shape {
 
     /**
      * For the comparison of two TriangleBySide object
-     * todo: how to write hashcode function
      */
     @Override
     public int hashCode() {

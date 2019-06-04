@@ -3,10 +3,9 @@ package com.keylane;
 import com.keylane.constants.AppConstants;
 import com.keylane.dto.Shape;
 import com.keylane.dto.TriangleBySide;
-import com.keylane.exception.InvalidTriangleException;
-import com.keylane.exception.ShapeValidationException;
-import com.keylane.service.ShapeAnalyzer;
-import com.keylane.service.TriangleService;
+import com.keylane.exceptions.InvalidTriangleException;
+import com.keylane.exceptions.ShapeValidationException;
+import com.keylane.services.ShapeAnalyzer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -42,38 +41,47 @@ public class ShapeAnalyzerApplication {
                 System.out.println("Oops..!, not a valid option ");
                 continue;
             }
-            switch (input) {
-            case 1:
+            if(input == 1)
                 processTriangle();
-            case 2:
+            else if(input == 2)
                 processQuadrilateral();
-            case 3:
+            else if(input == 3)
                 publishUniqueTriangleBySides();
-            default:
+            else
                 System.out.println("options chosen is not correct");
-            }
         }
     }
 
 
 
-    public static void processTriangle() throws ShapeValidationException, InvalidTriangleException {
+    public static void processTriangle() {
         double firstSide;
         double secondSide;
         double thirdSide;
-        System.out.print("enter length of first side :");
-        firstSide = (Double.parseDouble(getCommandInput()));
-        System.out.print("enter length of second side :");
-        secondSide = Double.parseDouble(getCommandInput());
-        System.out.print("enter length of third side :");
-        thirdSide = Double.parseDouble(getCommandInput());
-        TriangleBySide triangleBySide = new TriangleBySide(firstSide, secondSide, thirdSide);
-        shapeAnalyzer.analyze(triangleBySide);
+        String triangleType;
+        try{
+            System.out.print("enter length of first side :");
+            firstSide = (Double.parseDouble(getCommandInput()));
+            System.out.print("enter length of second side :");
+            secondSide = Double.parseDouble(getCommandInput());
+            System.out.print("enter length of third side :");
+            thirdSide = Double.parseDouble(getCommandInput());
+            TriangleBySide triangleBySide = new TriangleBySide(firstSide, secondSide, thirdSide);
+            triangleType = shapeAnalyzer.analyze(triangleBySide);
+            System.out.println("Triangle found of Type :"+triangleType);
+        } catch (NumberFormatException e) {
+            System.out.println("Not a valid value :(, Please start again");
+        } catch (InvalidTriangleException e) {
+            System.out.println("Invalid Triangle :(, Please start again");
+        } catch (ShapeValidationException e) {
+            System.out.println("Invalid Shape :(, Please start again");
+        }
     }
 
     public static void processQuadrilateral() {
-        System.out.println("Not supported yet, Coming Soon....!");
+        System.out.println("Coming Soon...!");
     }
+
 
     public static void publishUniqueTriangleBySides() {
         List<Shape> listTraingleBySide = shapeAnalyzer.getUniqueShapes(AppConstants.Geometries.TRIANGLE_BY_SIDES);

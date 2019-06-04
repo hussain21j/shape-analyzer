@@ -1,6 +1,9 @@
 package com.keylane.service;
 
 import com.keylane.dto.TriangleBySide;
+import com.keylane.services.ShapeService;
+import com.keylane.services.ShapeServiceFactory;
+import com.keylane.services.TriangleBySideService;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,8 +26,8 @@ public class ShapeServiceFactoryTest {
     //todo: write assertion to check if shape service is of required type
     public void getShapeService() throws Exception {
         //Given
-        TriangleService triangleService = new TriangleService();
-        Mockito.when(context.getBean(TriangleService.class)).thenReturn(triangleService);
+        TriangleBySideService triangleService = new TriangleBySideService();
+        Mockito.when(context.getBean(TriangleBySideService.class)).thenReturn(triangleService);
         //When
         ShapeService shapeService =  serviceFactory.getShapeService(TriangleBySide.class);
         //Then

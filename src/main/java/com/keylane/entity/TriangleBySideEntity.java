@@ -16,8 +16,9 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+
 /**
- * Todo: rename it to triangle by side
+ * Entity class
  */
 public class TriangleBySideEntity {
     @Id

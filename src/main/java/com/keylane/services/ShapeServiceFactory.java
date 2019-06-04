@@ -1,7 +1,7 @@
-package com.keylane.service;
+package com.keylane.services;
 
 import com.keylane.dto.TriangleBySide;
-import com.keylane.exception.NoServiceAvailable;
+import com.keylane.exceptions.NoServiceAvailableException;
 import org.springframework.context.ApplicationContext;
 
 /**
@@ -9,24 +9,24 @@ import org.springframework.context.ApplicationContext;
  */
 public class ShapeServiceFactory {
     ApplicationContext context;
-    TriangleService triangleService;
+    TriangleBySideService triangleService;
 
     /**
      * constructor of the class, initializes the bean of all the all concrete shape services
      */
-    ShapeServiceFactory( ApplicationContext applicationContext) {
+    public ShapeServiceFactory( ApplicationContext applicationContext) {
         this.context = applicationContext;
     }
 
     /**
      * Finds and returns the service for a shape
      */
-    ShapeService getShapeService(Class shape) throws NoServiceAvailable{
+    public ShapeService getShapeService(Class shape) throws NoServiceAvailableException {
         ShapeService shapeService;
         if(shape == TriangleBySide.class)
-            shapeService = context.getBean(TriangleService.class);
+            shapeService = context.getBean(TriangleBySideService.class);
         else {
-            throw new NoServiceAvailable("No service available for shape "+shape.getClass());
+            throw new NoServiceAvailableException("No service available for shape "+shape.getClass());
         }
         return shapeService;
     }

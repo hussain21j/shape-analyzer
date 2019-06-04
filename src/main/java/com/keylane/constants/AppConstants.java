@@ -7,11 +7,9 @@ import com.keylane.dto.TriangleBySide;
  */
 public class AppConstants {
     /**
-     * Triangle type
-     *
-     * Todo: rename
+     * Enum holding Triangle type
      */
-    public enum Geometry {
+    public enum TriangleTypes {
         EQUILATERAL("Equilateral Triangle"),
         ISOSCELES("Isosceles Triangle"),
         SCALENE("Scalene triangle"),
@@ -19,7 +17,7 @@ public class AppConstants {
 
         private String type;
 
-        Geometry(String type) {
+        TriangleTypes(String type) {
             this.type = type;
         }
 
@@ -28,6 +26,9 @@ public class AppConstants {
         }
     }
 
+    /**
+     * Enum holding different types of the geometries
+     */
     public enum Geometries {
         TRIANGLE_BY_SIDES(TriangleBySide.class);
 

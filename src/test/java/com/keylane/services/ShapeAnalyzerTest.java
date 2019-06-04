@@ -1,8 +1,10 @@
-package com.keylane.service;
+package com.keylane.services;
 
 import com.keylane.constants.AppConstants;
 import com.keylane.dto.Shape;
 import com.keylane.dto.TriangleBySide;
+import com.keylane.services.ShapeService;
+import com.keylane.services.ShapeServiceFactory;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +16,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.keylane.constants.AppConstants.TriangleTypes.SCALENE;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ShapeAnalyzerTest {
@@ -39,7 +43,7 @@ public class ShapeAnalyzerTest {
         String shapeType = spyShapeAnalyzer.analyze(shape);
 
         //Then
-        Assertions.assertThat(shapeType).isEqualToIgnoringCase(AppConstants.Geometry.SCALENE.getType());
+        Assertions.assertThat(shapeType).isEqualToIgnoringCase(SCALENE.getType());
     }
 
     @Test

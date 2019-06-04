@@ -1,9 +1,9 @@
-package com.keylane.service;
+package com.keylane.services;
 
 import com.keylane.dto.Shape;
 import com.keylane.dto.TriangleBySide;
 import com.keylane.entity.TriangleBySideEntity;
-import com.keylane.entity.TriangleRepository;
+import com.keylane.entity.TriangleBySideRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,13 +15,12 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class TriangleService implements ShapeService {
+public class TriangleBySideService implements ShapeService {
     @Autowired
-    TriangleRepository triangleRepository;
+    TriangleBySideRepository triangleRepository;
 
     /**
      *saves a triangle in the data bse
-     * todo use the builder or the constructor
      */
     @Override
     @Transactional

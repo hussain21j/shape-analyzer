@@ -3,7 +3,8 @@ package com.keylane.service;
 import com.keylane.dto.Shape;
 import com.keylane.dto.TriangleBySide;
 import com.keylane.entity.TriangleBySideEntity;
-import com.keylane.entity.TriangleRepository;
+import com.keylane.entity.TriangleBySideRepository;
+import com.keylane.services.TriangleBySideService;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,15 +17,13 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 @RunWith(MockitoJUnitRunner.class)
 public class TriangleServiceTest {
     @Mock
-    TriangleRepository repository;
+    TriangleBySideRepository repository;
 
     @InjectMocks
-    TriangleService service;
+    TriangleBySideService service;
 
     @Test
     public void testSave() throws Exception {

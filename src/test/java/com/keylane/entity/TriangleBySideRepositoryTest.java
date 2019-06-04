@@ -13,11 +13,11 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@EnableJpaRepositories(basePackageClasses = TriangleRepository.class)
+@EnableJpaRepositories(basePackageClasses = TriangleBySideRepository.class)
 @EntityScan(basePackageClasses = TriangleBySideEntity.class)
-public class TriangleRepositoryTest {
+public class TriangleBySideRepositoryTest {
     @Autowired
-    TriangleRepository repository;
+    TriangleBySideRepository repository;
 
     @Test
     public void testFindAll() throws Exception {
